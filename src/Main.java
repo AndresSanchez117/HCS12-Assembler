@@ -10,14 +10,16 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Assembly assembly = new Assembly();
 
-        // Read tabOp
+        // Read tabOp containing instructions
         File tabOpFile = new File("/home/andres/Ing/5-SeminarioDeTraductores-I/Projects/TABOP.txt");
         assembly.readTabOp(tabOpFile);
-
+        
+        // Read input assembly languaje file
         File inFile = new File("/home/andres/Ing/5-SeminarioDeTraductores-I/Projects/Practica_8/P8.asm");
 
         try (Scanner scanner = new Scanner(inFile)) {
             // Fist Pass
+            // Symbol table file
             FileWriter tabSimWriter = new FileWriter("TABSIM.txt");
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
@@ -29,7 +31,7 @@ public class Main {
             // Second Pass
             assembly.LSTSecondPass();
 
-            // Write LST to File
+            // Write LST to File (output file)
             FileWriter lstWriter = new FileWriter("P8.LST");
             assembly.writeLstToFile(lstWriter);
             lstWriter.close();
